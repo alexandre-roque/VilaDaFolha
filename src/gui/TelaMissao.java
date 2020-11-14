@@ -56,6 +56,23 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Missões");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/pergaminhoIcon.jpg"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         listaMissoes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -170,6 +187,10 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_listaMissoesValueChanged
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        
+    }//GEN-LAST:event_formInternalFrameClosing
 
     private ArrayList<Missao> missoes;
 

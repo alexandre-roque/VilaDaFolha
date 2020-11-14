@@ -4,6 +4,7 @@ import dominio.Missao;
 import dominio.Ninja;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import textFileApp.ReadTextFile;
 
 /**
@@ -68,6 +69,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         painelPrincipal = new javax.swing.JPanel();
+        imagemVila = new javax.swing.JLabel();
         listaNinjas = new javax.swing.JButton();
         listaMissoes = new javax.swing.JButton();
         cadastroMissoes = new javax.swing.JButton();
@@ -78,15 +80,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         painelPrincipal.setPreferredSize(new java.awt.Dimension(670, 356));
 
+        imagemVila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/aldeiaFundo.jpg"))); // NOI18N
+
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 672, Short.MAX_VALUE)
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addComponent(imagemVila)
+                .addGap(0, 165, Short.MAX_VALUE))
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addComponent(imagemVila)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         listaNinjas.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
@@ -127,8 +135,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addComponent(cadastroMissoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cadastroNinjas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,11 +159,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaNinjasActionPerformed
+        imagemVila.setVisible(false);
         fechaInternalFrames();
         telaNinja.show();
     }//GEN-LAST:event_listaNinjasActionPerformed
 
     private void listaMissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMissoesActionPerformed
+        imagemVila.setVisible(false);
         fechaInternalFrames();
         telaMissao.show();
     }//GEN-LAST:event_listaMissoesActionPerformed
@@ -215,6 +224,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastroMissoes;
     private javax.swing.JButton cadastroNinjas;
+    private javax.swing.JLabel imagemVila;
     private javax.swing.JButton listaMissoes;
     private javax.swing.JButton listaNinjas;
     private javax.swing.JPanel painelPrincipal;
