@@ -152,6 +152,7 @@ public class TelaNinja extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaNinjasValueChanged
+        
         int index = listaNinjas.getSelectedIndex();
         ImageIcon imagem;
         
@@ -172,6 +173,14 @@ public class TelaNinja extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_listaNinjasValueChanged
 
+    public ArrayList<Ninja> getNinjas() {
+        return ninjas;
+    }
+
+    public void setNinjas(ArrayList<Ninja> ninjas) {
+        this.ninjas = ninjas;
+    }
+    
     private ArrayList<Ninja> ninjas;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
