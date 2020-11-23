@@ -127,6 +127,9 @@
         <Property name="text" type="java.lang.String" value="Cadastro de Miss&#xf5;es"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroMissoesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cadastroNinjas">
       <Properties>

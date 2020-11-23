@@ -41,9 +41,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         telaNinja = new TelaNinja(this.ninjas);
         telaMissao = new TelaMissao(this.missoes);
         telaCadastroNinjas = new TelaCadastroNinjas(this.ninjas);
+        telaCadastroMissoes = new TelaCadastroMissoes();
         painelPrincipal.add(telaNinja);
         painelPrincipal.add(telaMissao);
         painelPrincipal.add(telaCadastroNinjas);
+        painelPrincipal.add(telaCadastroMissoes);
     }
 
     public ArrayList<Missao> getMissoes() {
@@ -121,6 +123,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         cadastroMissoes.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
         cadastroMissoes.setText("Cadastro de Missões");
         cadastroMissoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cadastroMissoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroMissoesActionPerformed(evt);
+            }
+        });
 
         cadastroNinjas.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
         cadastroNinjas.setText("Cadastro de Ninjas");
@@ -188,6 +195,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cadastroNinjasActionPerformed
 
+    private void cadastroMissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMissoesActionPerformed
+        imagemVila.setVisible(false);
+        fechaInternalFrames();
+        telaCadastroMissoes.show();
+    }//GEN-LAST:event_cadastroMissoesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +241,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         telaNinja.dispose();
         telaMissao.dispose();
         telaCadastroNinjas.dispose();
+        telaCadastroMissoes.dispose();
     }
 
     private void setIconImage() {
@@ -241,6 +255,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame telaNinja;
     private javax.swing.JInternalFrame telaMissao;
     private javax.swing.JInternalFrame telaCadastroNinjas;
+    private javax.swing.JInternalFrame telaCadastroMissoes;
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
