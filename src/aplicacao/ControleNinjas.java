@@ -56,14 +56,22 @@ public class ControleNinjas {
     
     public String[] consultarNinja(String nomeNinja){
         
-        String [] campos = new String [3];
-        for(Ninja ninjas : this.ninjas){
+        String [] campos = new String [4];
+        for(Ninja ninja : this.ninjas){
             
-            if(nomeNinja.equals(ninjas.getNome())){
-                
-                campos[0] = String.valueOf(ninjas.getIdade());
-                campos[1] = ninjas.getRank();
-                campos[2] = String.valueOf(ninjas.getMerito());
+            if(ninja.getNome().startsWith(nomeNinja)){
+                campos[0] = ninja.getNome();
+                campos[1] = String.valueOf(ninja.getIdade());
+                campos[2] = ninja.getRank();
+                campos[3] = String.valueOf(ninja.getMerito());
+                return campos;
+            }
+            
+            if(ninja.getNome().equals(nomeNinja)){
+                campos[0] = ninja.getNome();
+                campos[0] = String.valueOf(ninja.getIdade());
+                campos[1] = ninja.getRank();
+                campos[2] = String.valueOf(ninja.getMerito());
                 return campos;
             }
         

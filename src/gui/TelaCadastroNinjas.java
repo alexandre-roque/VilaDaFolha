@@ -247,15 +247,17 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
 
     private void consultarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarNinjaActionPerformed
        
-        String campos[];
-        campos = this.controleNinja.consultarNinja(this.nomeNinja.getText());
-        nomeAntes = this.nomeNinja.getText();
+        String campos[] = null;
+        if(!this.nomeNinja.getText().equals("")){
+            campos = this.controleNinja.consultarNinja(this.nomeNinja.getText());
+            nomeAntes = this.nomeNinja.getText();
+        }
         
         if(campos!=null){
-            
-            this.idadeNinja.setText(campos[0]);
-            this.rankNinja.setText(campos[1]);
-            this.meritoNinja.setText(campos[2]);
+            this.nomeNinja.setText(campos[0]);
+            this.idadeNinja.setText(campos[1]);
+            this.rankNinja.setText(campos[2]);
+            this.meritoNinja.setText(campos[3]);
         }else{
            JOptionPane.showMessageDialog(this, " Não existe esse Ninja!", "Informação", JOptionPane.INFORMATION_MESSAGE);
            limparTela();
