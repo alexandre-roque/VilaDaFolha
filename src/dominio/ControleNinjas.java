@@ -19,7 +19,7 @@ import textFileApp.ReadTextFile;
 public class ControleNinjas extends Observable{
     
     
-    private ArrayList<Ninja> ninjas;
+    public ArrayList<Ninja> ninjas;
     
     public ControleNinjas(){
         
@@ -34,10 +34,10 @@ public class ControleNinjas extends Observable{
         double merito = Double.parseDouble(meritoNinja);
         Ninja ninjaAdicionado = new Ninja(nome,idade,rank,merito,"");
         this.ninjas.add(ninjaAdicionado);
-        
+        System.out.println("aaaa");
         cadastrarDadosNinja();
         mudaEstado();
-        
+        System.out.println("Passou do adicionar");
     }
     
     public void lerDadosNinja(){
@@ -90,6 +90,7 @@ public class ControleNinjas extends Observable{
                 
                 this.ninjas.remove(ninjas);
                 cadastrarDadosNinja();
+                System.out.println("Passou do remover");
                 mudaEstado();
                 return true;
             }
@@ -123,6 +124,7 @@ public class ControleNinjas extends Observable{
     public void mudaEstado(){
         setChanged();
         notifyObservers(this.getNinjas());
+        //System.out.println("Mudou");
     }
     
 }

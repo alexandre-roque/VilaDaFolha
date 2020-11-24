@@ -195,7 +195,7 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
         JOptionPane.showMessageDialog(this, "Ninja incluido com sucesso!", "Inclusão", JOptionPane.INFORMATION_MESSAGE);
         //Limpa os campos
         limparTela();
-          
+        
     }//GEN-LAST:event_cadastrarNinjaActionPerformed
     
     private void limparTela(){

@@ -8,3 +8,4 @@ Nasser;Jounin;20;880000.0;/gui/images/nasser.png
 Mateus;Genin;22;10.0;/gui/images/ninjaDefault.png
 Majin;Jounin;20;1.0E10;/gui/images/ninjaDefault.png
 Marcelo;Genin;20;15.0;/gui/images/ninjaDefault.png
+Shanks;Jounin;42;100000.0;/gui/images/ninjaDefault.png

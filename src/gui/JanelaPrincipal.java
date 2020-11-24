@@ -22,6 +22,7 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     /**
      * Creates new form JanelaPrincipal
      */
+    
     public JanelaPrincipal(ControleNinjas controleNinja) {
         this.controleNinja = controleNinja;
         initListaNinjas();
@@ -29,6 +30,7 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
         initComponents();
         initInternalFrames();
         setIconImage();
+        controleNinja.addObserver((Observer) telaNinja);
     }
     
     public void initListaMissoes(){
@@ -44,7 +46,6 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     }
     
     public void initInternalFrames(){
-        
         telaNinja = new TelaNinja(this.controleNinja);
         telaMissao = new TelaMissao(this.missoes);
         telaCadastroNinjas = new TelaCadastroNinjas(this.controleNinja);
@@ -175,8 +176,6 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaNinjasActionPerformed
-        telaNinja = new TelaNinja(this.controleNinja);
-        painelPrincipal.add(telaNinja);
         imagemVila.setVisible(false);
         fechaInternalFrames();
         telaNinja.show();
