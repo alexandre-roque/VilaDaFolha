@@ -55,6 +55,21 @@ public class CreateTextFile {
             System.err.println("Entrada inválida. Tente novamente!");
         }
     }
+    
+    public static void cadastraNinja(Ninja ninja){
+        
+        try{
+             output.format("%s;%s;%s;%s;%s\n",ninja.getNome(), ninja.getRank(),ninja.getIdade(),ninja.getMerito(), ninja.getImagem());
+            
+        }
+        catch (FormatterClosedException formatterClosedException) {
+            System.err.println("Erro ao escrever no arquivo. Finalizando.");
+        } catch (NoSuchElementException elementException) {
+            System.err.println("Entrada inválida. Tente novamente!");
+        }
+        
+        
+    }
 
     // close file
     public static void closeFile() {

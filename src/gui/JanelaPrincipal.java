@@ -1,11 +1,14 @@
 package gui;
 
+import aplicacao.ControleNinjas;
 import dominio.Missao;
 import dominio.Ninja;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JLabel;
 import textFileApp.ReadTextFile;
+
 
 /**
  *
@@ -31,16 +34,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
     
     public void initListaNinjas(){
-        ReadTextFile.openFile("listaNinjas.txt");
-        ninjas = ReadTextFile.readRecordsNinjas();
-        ReadTextFile.closeFile();
+        
+        controleNinja.lerDadosNinja();
+       
     }
     
     public void initInternalFrames(){
-        telaNinja = new TelaNinja(this.ninjas);
+        
+        telaNinja = new TelaNinja(this.controleNinja.getNinjas());
         telaMissao = new TelaMissao(this.missoes);
+        telaCadastroNinjas = new TelaCadastroNinjas();
+        telaCadastroMissoes = new TelaCadastroMissoes();
         painelPrincipal.add(telaNinja);
         painelPrincipal.add(telaMissao);
+        painelPrincipal.add(telaCadastroNinjas);
+        painelPrincipal.add(telaCadastroMissoes);
     }
 
     public ArrayList<Missao> getMissoes() {
@@ -50,15 +58,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     public void setMissoes(ArrayList<Missao> missoes) {
         this.missoes = missoes;
     }
-
-    public ArrayList<Ninja> getNinjas() {
-        return ninjas;
-    }
-
-    public void setNinjas(ArrayList<Ninja> ninjas) {
-        this.ninjas = ninjas;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,10 +118,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         cadastroMissoes.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
         cadastroMissoes.setText("Cadastro de Missões");
         cadastroMissoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cadastroMissoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroMissoesActionPerformed(evt);
+            }
+        });
 
         cadastroNinjas.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
         cadastroNinjas.setText("Cadastro de Ninjas");
         cadastroNinjas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cadastroNinjas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroNinjasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,7 +161,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cadastroMissoes)
                         .addGap(0, 154, Short.MAX_VALUE))
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -159,6 +169,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaNinjasActionPerformed
+        telaNinja = new TelaNinja(this.controleNinja.getNinjas());
+        painelPrincipal.add(this.telaNinja);
         imagemVila.setVisible(false);
         fechaInternalFrames();
         telaNinja.show();
@@ -169,6 +181,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         fechaInternalFrames();
         telaMissao.show();
     }//GEN-LAST:event_listaMissoesActionPerformed
+
+    private void cadastroNinjasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroNinjasActionPerformed
+        imagemVila.setVisible(false);
+        fechaInternalFrames();
+        telaCadastroNinjas.show();
+        
+    }//GEN-LAST:event_cadastroNinjasActionPerformed
+
+    private void cadastroMissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMissoesActionPerformed
+        imagemVila.setVisible(false);
+        fechaInternalFrames();
+        telaCadastroMissoes.show();
+    }//GEN-LAST:event_cadastroMissoesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,17 +234,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void fechaInternalFrames(){
         telaNinja.dispose();
         telaMissao.dispose();
+        telaCadastroNinjas.dispose();
+        telaCadastroMissoes.dispose();
     }
 
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/simboloFolha.png")));
-    }
-    
+    }   
+     
     private ArrayList<Missao> missoes;
-    private ArrayList<Ninja> ninjas;
+    private ControleNinjas controleNinja = new ControleNinjas(); 
     
     private javax.swing.JInternalFrame telaNinja;
     private javax.swing.JInternalFrame telaMissao;
+    private javax.swing.JInternalFrame telaCadastroNinjas;
+    private javax.swing.JInternalFrame telaCadastroMissoes;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastroMissoes;
