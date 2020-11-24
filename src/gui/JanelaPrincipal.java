@@ -1,5 +1,6 @@
 package gui;
 
+import aplicacao.ControleNinjas;
 import dominio.Missao;
 import dominio.Ninja;
 import java.awt.Toolkit;
@@ -32,15 +33,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
     
     public void initListaNinjas(){
-        ReadTextFile.openFile("listaNinjas.txt");
-        ninjas = ReadTextFile.readRecordsNinjas();
-        ReadTextFile.closeFile();
+        
+        controleNinja.lerDadosNinja();
+       
     }
     
     public void initInternalFrames(){
-        telaNinja = new TelaNinja(this.ninjas);
+        
+        telaNinja = new TelaNinja(this.controleNinja.getNinjas());
         telaMissao = new TelaMissao(this.missoes);
-        telaCadastroNinjas = new TelaCadastroNinjas(this.ninjas);
+        telaCadastroNinjas = new TelaCadastroNinjas();
         telaCadastroMissoes = new TelaCadastroMissoes();
         painelPrincipal.add(telaNinja);
         painelPrincipal.add(telaMissao);
@@ -55,15 +57,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     public void setMissoes(ArrayList<Missao> missoes) {
         this.missoes = missoes;
     }
-
-    public ArrayList<Ninja> getNinjas() {
-        return ninjas;
-    }
-
-    public void setNinjas(ArrayList<Ninja> ninjas) {
-        this.ninjas = ninjas;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,9 +168,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaNinjasActionPerformed
-        telaNinja = new TelaNinja(this.ninjas);
+        telaNinja = new TelaNinja(this.controleNinja.getNinjas());
         painelPrincipal.add(this.telaNinja);
-        
         imagemVila.setVisible(false);
         fechaInternalFrames();
         telaNinja.show();
@@ -250,7 +243,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
    
      
     private ArrayList<Missao> missoes;
-    private ArrayList<Ninja> ninjas;
+    private ControleNinjas controleNinja = new ControleNinjas(); 
     
     private javax.swing.JInternalFrame telaNinja;
     private javax.swing.JInternalFrame telaMissao;
