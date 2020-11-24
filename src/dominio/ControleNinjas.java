@@ -3,28 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplicacao;
+package dominio;
 
 import dominio.Ninja;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import textFileApp.CreateTextFile;
 import textFileApp.ReadTextFile;
 
 /**
  *
- * @author vitor
+ * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class ControleNinjas {
+public class ControleNinjas extends Observable{
     
     
     private ArrayList<Ninja> ninjas;
-    
     
     public ControleNinjas(){
         
         this.ninjas = new ArrayList<>();
         lerDadosNinja();
     }
+    
     
     public void  adicionaNinja(String nome,String idadeNinja,String rank,String meritoNinja){
         
@@ -34,6 +36,7 @@ public class ControleNinjas {
         this.ninjas.add(ninjaAdicionado);
         
         cadastrarDadosNinja();
+        mudaEstado();
         
     }
     
@@ -87,6 +90,7 @@ public class ControleNinjas {
                 
                 this.ninjas.remove(ninjas);
                 cadastrarDadosNinja();
+                mudaEstado();
                 return true;
             }
         }
@@ -116,8 +120,9 @@ public class ControleNinjas {
         return ninjas;
     }
     
-   
-    
-    
+    public void mudaEstado(){
+        setChanged();
+        notifyObservers(this.getNinjas());
+    }
     
 }

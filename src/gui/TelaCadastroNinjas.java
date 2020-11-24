@@ -5,7 +5,7 @@
  */
 package gui;
 
-import aplicacao.ControleNinjas;
+import dominio.ControleNinjas;
 import dominio.Ninja;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,9 +14,9 @@ import textFileApp.ReadTextFile;
 
 /**
  *
- * @author vitor
+ * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
+public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
 
     /**
      * Creates new form TelaCadastroNinjas
@@ -25,9 +25,9 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
     
     private ControleNinjas controleNinja; 
     
-    public TelaCadastroNinjas() {
+    public TelaCadastroNinjas(ControleNinjas controleNinja) {
         initComponents();
-        controleNinja = new ControleNinjas();
+        this.controleNinja = controleNinja;
         this.nomeAntes = "";
     }
     
@@ -64,23 +64,11 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(181, 29));
         jLabel1.setPreferredSize(new java.awt.Dimension(181, 29));
 
-        nomeNinja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeNinjaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel2.setText("Nome do Ninja:");
         jLabel2.setMaximumSize(new java.awt.Dimension(181, 29));
         jLabel2.setMinimumSize(new java.awt.Dimension(181, 29));
         jLabel2.setPreferredSize(new java.awt.Dimension(181, 29));
-
-        rankNinja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rankNinjaActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("Idade do Ninja:");
@@ -88,23 +76,11 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
         jLabel3.setMinimumSize(new java.awt.Dimension(181, 29));
         jLabel3.setPreferredSize(new java.awt.Dimension(181, 29));
 
-        idadeNinja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idadeNinjaActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel4.setText("Mérito do Ninja");
         jLabel4.setMaximumSize(new java.awt.Dimension(181, 29));
         jLabel4.setMinimumSize(new java.awt.Dimension(181, 29));
         jLabel4.setPreferredSize(new java.awt.Dimension(181, 29));
-
-        meritoNinja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                meritoNinjaActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,18 +187,6 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rankNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankNinjaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rankNinjaActionPerformed
-
-    private void idadeNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idadeNinjaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idadeNinjaActionPerformed
-
-    private void meritoNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meritoNinjaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_meritoNinjaActionPerformed
-
     private void cadastrarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNinjaActionPerformed
         
         //Cadastra o novo Ninja
@@ -241,10 +205,6 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
         this.idadeNinja.setText("");
         this.meritoNinja.setText("");
     }
-    private void nomeNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeNinjaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeNinjaActionPerformed
-
     private void consultarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarNinjaActionPerformed
        
         String campos[] = null;
@@ -259,7 +219,7 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame {
             this.rankNinja.setText(campos[2]);
             this.meritoNinja.setText(campos[3]);
         }else{
-           JOptionPane.showMessageDialog(this, " Não existe esse Ninja!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(this, " Ninja não encontrado !", "Aviso", JOptionPane.ERROR_MESSAGE);
            limparTela();
         }
     }//GEN-LAST:event_consultarNinjaActionPerformed

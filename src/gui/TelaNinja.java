@@ -5,6 +5,7 @@
  */
 package gui;
 
+import dominio.ControleNinjas;
 import dominio.Ninja;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -19,9 +20,9 @@ public class TelaNinja extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaMissao
      */
-    public TelaNinja(ArrayList<Ninja> ninjas) {
+    public TelaNinja(ControleNinjas controleNinja) {
         initComponents();
-        this.ninjas = ninjas;
+        this.ninjas = controleNinja.getNinjas();
         iniciaLista();
     }
     
@@ -166,11 +167,7 @@ public class TelaNinja extends javax.swing.JInternalFrame {
             labelImagemNinja.setIcon(imagem);
         }
         else
-            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));
-            
-        
-        
-        
+            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));    
     }//GEN-LAST:event_listaNinjasValueChanged
 
     public ArrayList<Ninja> getNinjas() {
