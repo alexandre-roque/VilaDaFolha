@@ -1,12 +1,4 @@
-<<<<<<< Updated upstream:src/gui/cadastroNinjas.java
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-=======
 
->>>>>>> Stashed changes:src/gui/TelaCadastroMissoes.java
 package gui;
 
 import dominio.ControleMissoes;
@@ -20,21 +12,17 @@ import textFileApp.ReadTextFile;
  *
  * @author alexa
  */
-public class cadastroNinjas extends javax.swing.JInternalFrame {
+public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form cadastroNinjas
+     * Creates new form TelaCadastroMissoes
      */
-<<<<<<< Updated upstream:src/gui/cadastroNinjas.java
-    public cadastroNinjas() {
-=======
     
     private String nomeAntes;
     
     private ControleMissoes controleMissoes; 
     
     public TelaCadastroMissoes() {
->>>>>>> Stashed changes:src/gui/TelaCadastroMissoes.java
         initComponents();
         this.controleMissoes = new ControleMissoes();
         this.nomeAntes = "";
@@ -188,13 +176,6 @@ public class cadastroNinjas extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream:src/gui/cadastroNinjas.java
-            .addGap(0, 654, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-=======
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +187,6 @@ public class cadastroNinjas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
->>>>>>> Stashed changes:src/gui/TelaCadastroMissoes.java
         );
 
         pack();

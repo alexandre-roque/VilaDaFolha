@@ -5,23 +5,27 @@
  */
 package gui;
 
+import dominio.ControleNinjas;
 import dominio.Ninja;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author alexa
  */
-public class TelaNinja extends javax.swing.JInternalFrame {
+public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
 
     /**
      * Creates new form TelaMissao
      */
-    public TelaNinja(ArrayList<Ninja> ninjas) {
+    public TelaNinja(ControleNinjas controleNinja) {
         initComponents();
-        this.ninjas = ninjas;
+        this.ninjas = controleNinja.getNinjas();
         iniciaLista();
     }
     
@@ -42,8 +46,6 @@ public class TelaNinja extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaNinjas = new javax.swing.JList<>();
         nomeNinja = new javax.swing.JLabel();
         textoNomeNinja = new javax.swing.JTextField();
         rankNinja = new javax.swing.JLabel();
@@ -53,24 +55,15 @@ public class TelaNinja extends javax.swing.JInternalFrame {
         meritoNinja = new javax.swing.JLabel();
         textoMeritoNinja = new javax.swing.JTextField();
         labelImagemNinja = new javax.swing.JLabel();
+        jPanelLista = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaNinjas = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setClosable(true);
         setTitle("Ninjas");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/iconeNinja.png"))); // NOI18N
         setPreferredSize(new java.awt.Dimension(670, 356));
-
-        listaNinjas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listaNinjas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listaNinjasValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(listaNinjas);
 
         nomeNinja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         nomeNinja.setText("Nome do ninja:");
@@ -91,6 +84,32 @@ public class TelaNinja extends javax.swing.JInternalFrame {
         meritoNinja.setText("Mérito do Ninja");
 
         textoMeritoNinja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        listaNinjas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        listaNinjas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaNinjasValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaNinjas);
+
+        javax.swing.GroupLayout jPanelListaLayout = new javax.swing.GroupLayout(jPanelLista);
+        jPanelLista.setLayout(jPanelListaLayout);
+        jPanelListaLayout.setHorizontalGroup(
+            jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListaLayout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanelListaLayout.setVerticalGroup(
+            jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,8 +118,8 @@ public class TelaNinja extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nomeNinja, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                     .addComponent(textoNomeNinja)
@@ -110,8 +129,8 @@ public class TelaNinja extends javax.swing.JInternalFrame {
                     .addComponent(idadeNinja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(meritoNinja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textoMeritoNinja))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelImagemNinja, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(labelImagemNinja, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -122,7 +141,7 @@ public class TelaNinja extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(labelImagemNinja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
@@ -152,31 +171,54 @@ public class TelaNinja extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaNinjasValueChanged
-        int index = listaNinjas.getSelectedIndex();
+     
+        int index = 0;
         ImageIcon imagem;
         
-        textoNomeNinja.setText(ninjas.get(index).getNome());
-        textoRankNinja.setText(ninjas.get(index).getRank());
-        textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
-        textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
-        
-        if(!ninjas.get(index).getImagem().equals("")){
-            imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
-            labelImagemNinja.setIcon(imagem);
+        if(listaNinjas.getSelectedIndex() >= 0 && listaNinjas.getSelectedIndex() <= ninjas.size()){
+            index = listaNinjas.getSelectedIndex();
+            textoNomeNinja.setText(ninjas.get(index).getNome());
+            textoRankNinja.setText(ninjas.get(index).getRank());
+            textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
+            textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
+
+            if(!ninjas.get(index).getImagem().equals("")){
+                imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
+                labelImagemNinja.setIcon(imagem);
+            }
+            else
+                imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));   
         }
-        else
-            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));
-            
-        
-        
-        
+        else{
+            textoNomeNinja.setText("");
+            textoRankNinja.setText("");
+            textoIdadeNinja.setText("");
+            textoMeritoNinja.setText("");
+        }
     }//GEN-LAST:event_listaNinjasValueChanged
 
+    public ArrayList<Ninja> getNinjas() {
+        return ninjas;
+    }
+
+    public void setNinjas(ArrayList<Ninja> ninjas) {
+        this.ninjas = ninjas;
+    }
+    
+    public void clearCampos(){
+        textoNomeNinja.setText("");
+        textoRankNinja.setText("");
+        textoIdadeNinja.setText("");
+        textoMeritoNinja.setText("");
+        listaNinjas.clearSelection();
+    }
+    
     private ArrayList<Ninja> ninjas;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel idadeNinja;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanelLista;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelImagemNinja;
     private javax.swing.JList<String> listaNinjas;
@@ -188,4 +230,12 @@ public class TelaNinja extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textoNomeNinja;
     private javax.swing.JTextField textoRankNinja;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ControleNinjas controleAuxNinjas = (ControleNinjas)o;
+        this.ninjas = controleAuxNinjas.getNinjas();
+        iniciaLista();
+        //System.out.println("Mudou tela ninja");
+    }
 }
