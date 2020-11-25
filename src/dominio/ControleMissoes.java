@@ -23,7 +23,6 @@ public class ControleMissoes extends Observable{
     
     
     public ControleMissoes(){
-        
         this.missoes = new ArrayList<>();
         lerDadosMissao();
     }

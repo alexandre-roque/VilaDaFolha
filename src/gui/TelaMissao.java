@@ -5,6 +5,7 @@
  */
 package gui;
 
+import dominio.ControleMissoes;
 import dominio.Missao;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class TelaMissao extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaMissao
      */
-    public TelaMissao(ArrayList<Missao> missoes) {
-        this.missoes = missoes;
+    public TelaMissao(ControleMissoes controleMissoes) {
+        this.controleMissoes = controleMissoes;
+        this.missoes = controleMissoes.getMissoes();
         initComponents(); // PODEM TER 25 CARACTERES POR LINHA NO LABEL "mensagem"
         iniciaLista();
     }
@@ -192,6 +194,7 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private ControleMissoes controleMissoes;
     private ArrayList<Missao> missoes;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
