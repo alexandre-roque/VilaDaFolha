@@ -5,10 +5,13 @@
  */
 package gui;
 
+import dominio.ControleMissoes;
+import dominio.ControleNinjas;
 import dominio.Missao;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +22,10 @@ public class TelaMissao extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaMissao
      */
-    public TelaMissao(ArrayList<Missao> missoes) {
-        this.missoes = missoes;
+    public TelaMissao(ControleMissoes controleMissoes, javax.swing.JInternalFrame telaNinja) {
+        this.telaNinja = telaNinja;
+        this.controleMissoes = controleMissoes;
+        this.missoes = controleMissoes.getMissoes();
         initComponents(); // PODEM TER 25 CARACTERES POR LINHA NO LABEL "mensagem"
         iniciaLista();
     }
@@ -51,9 +56,9 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         fundoPergaminho = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         dificuldadeMissao = new javax.swing.JTextArea();
+        atribuirMissao = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setClosable(true);
         setTitle("Missões");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/pergaminhoIcon.jpg"))); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -95,8 +100,9 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         descricaoMissaoPergaminho.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        descricaoMissaoPergaminho.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(descricaoMissaoPergaminho);
-        descricaoMissaoPergaminho.setBounds(30, 30, 200, 50);
+        descricaoMissaoPergaminho.setBounds(30, 30, 200, 160);
 
         fundoPergaminho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/pergaminho.jpg"))); // NOI18N
         jPanel1.add(fundoPergaminho);
@@ -110,6 +116,13 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         dificuldadeMissao.setFocusable(false);
         jScrollPane2.setViewportView(dificuldadeMissao);
 
+        atribuirMissao.setText("Atribuir missão");
+        atribuirMissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atribuirMissao(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,15 +133,20 @@ public class TelaMissao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelDescricao)
                             .addComponent(rankMissao))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,14 +160,16 @@ public class TelaMissao extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(5, 5, 5))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(29, 29, 29)
+                                .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(15, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -192,9 +212,20 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void atribuirMissao(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atribuirMissao
+        this.dispose();
+        ((TelaNinja) telaNinja).setDesignarMissao(true);
+        ((TelaNinja) telaNinja).setDificuldadeMissaoAtribuida(this.rankMissao.getText());
+        ((TelaNinja) telaNinja).clearCampos();
+        telaNinja.show();
+    }//GEN-LAST:event_atribuirMissao
+
+    private ControleMissoes controleMissoes;
     private ArrayList<Missao> missoes;
+    private javax.swing.JInternalFrame telaNinja;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atribuirMissao;
     private javax.swing.JLabel descricaoMissaoPergaminho;
     private javax.swing.JTextArea dificuldadeMissao;
     private javax.swing.JLabel fundoPergaminho;

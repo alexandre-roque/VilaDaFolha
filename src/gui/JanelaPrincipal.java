@@ -1,5 +1,6 @@
 package gui;
 
+import dominio.ControleMissoes;
 import dominio.ControleNinjas;
 import dominio.ControleNinjas;
 import dominio.Missao;
@@ -23,8 +24,9 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
      * Creates new form JanelaPrincipal
      */
     
-    public JanelaPrincipal(ControleNinjas controleNinja) {
+    public JanelaPrincipal(ControleNinjas controleNinja, ControleMissoes controleMissoes) {
         this.controleNinja = controleNinja;
+        this.controleMissoes = controleMissoes;
         initListaNinjas();
         initListaMissoes();
         initComponents();
@@ -47,7 +49,7 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     
     public void initInternalFrames(){
         telaNinja = new TelaNinja(this.controleNinja);
-        telaMissao = new TelaMissao(this.missoes);
+        telaMissao = new TelaMissao(this.controleMissoes, this.telaNinja);
         telaCadastroNinjas = new TelaCadastroNinjas(this.controleNinja);
         telaCadastroMissoes = new TelaCadastroMissoes();
         painelPrincipal.add(telaNinja);
@@ -218,6 +220,7 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JInternalFrame telaCadastroNinjas;
     private javax.swing.JInternalFrame telaCadastroMissoes;
     private ControleNinjas controleNinja;
+    private ControleMissoes controleMissoes;
     
     @Override
     public void update(Observable o, Object arg) {

@@ -54,7 +54,6 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setClosable(true);
         setTitle("Cadastro Ninjas");
         setNormalBounds(new java.awt.Rectangle(0, 0, 82, 0));
 
@@ -205,6 +204,7 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
         this.idadeNinja.setText("");
         this.meritoNinja.setText("");
     }
+    
     private void consultarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarNinjaActionPerformed
        
         String campos[] = null;

@@ -12,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -26,7 +27,25 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
     public TelaNinja(ControleNinjas controleNinja) {
         initComponents();
         this.ninjas = controleNinja.getNinjas();
+        this.designarMissao = false;
+        this.dificuldadeMissaoAtribuida = "";
         iniciaLista();
+    }
+
+    public boolean isDesignarMissao() {
+        return designarMissao;
+    }
+
+    public void setDesignarMissao(boolean designarMissao) {
+        this.designarMissao = designarMissao;
+    }
+
+    public String getDificuldadeMissaoAtribuida() {
+        return dificuldadeMissaoAtribuida;
+    }
+
+    public void setDificuldadeMissaoAtribuida(String dificuldadeMissaoAtribuida) {
+        this.dificuldadeMissaoAtribuida = dificuldadeMissaoAtribuida;
     }
     
     public void iniciaLista(){
@@ -60,7 +79,6 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
         listaNinjas = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
 
-        setClosable(true);
         setTitle("Ninjas");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/iconeNinja.png"))); // NOI18N
         setPreferredSize(new java.awt.Dimension(670, 356));
@@ -139,7 +157,7 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -180,14 +198,66 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
             textoNomeNinja.setText(ninjas.get(index).getNome());
             textoRankNinja.setText(ninjas.get(index).getRank());
             textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
-            textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
 
             if(!ninjas.get(index).getImagem().equals("")){
                 imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
                 labelImagemNinja.setIcon(imagem);
             }
             else
-                imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));   
+                imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));
+            
+            if(this.isDesignarMissao())
+            {
+                String mensagem = "O ninja ";
+                mensagem = mensagem.concat(ninjas.get(index).getNome());
+                
+                if(this.getDificuldadeMissaoAtribuida().equals("S"))
+                {
+                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 100000);
+                    
+                    mensagem = mensagem.concat(" ganhou 100000 pontos de mérito.");                   
+                    JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                else if(this.getDificuldadeMissaoAtribuida().equals("Rank: A"))
+                {
+                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 10000 );
+                    
+                    mensagem = mensagem.concat(" ganhou 10000 pontos de mérito.");      
+                    JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                else if(this.getDificuldadeMissaoAtribuida().equals("Rank: B"))
+                {
+                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 1000  );
+                    mensagem = mensagem.concat(" ganhou 1000 pontos de mérito.");      
+                    JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                else if(this.getDificuldadeMissaoAtribuida().equals("Rank: C"))
+                {
+                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 100   );
+                    mensagem = mensagem.concat(" ganhou 100 pontos de mérito.");      
+                    JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                else if(this.getDificuldadeMissaoAtribuida().equals("Rank: D"))
+                {
+                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 10    );
+                    mensagem = mensagem.concat(" ganhou 10 pontos de mérito.");      
+                    JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocorreu um erro ao designar a missão", "AVISO", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                this.setDesignarMissao(false);
+            }
+            
+            textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
+            
         }
         else{
             textoNomeNinja.setText("");
@@ -214,6 +284,8 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
     }
     
     private ArrayList<Ninja> ninjas;
+    private boolean designarMissao;
+    private String dificuldadeMissaoAtribuida;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel idadeNinja;
