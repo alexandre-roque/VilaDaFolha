@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplicacao;
+package dominio;
 
 import dominio.Missao;
 import java.util.ArrayList;
@@ -98,8 +98,8 @@ public class ControleMissoes {
             	missoes.setNome(campos[0]);
             	missoes.setDescricao(campos[1]);
             	missoes.setRank(campos[2]);
-               cadastrarDadosNinja();
-               return true;
+                cadastrarDadosNinja();
+                return true;
             }
             
         }
