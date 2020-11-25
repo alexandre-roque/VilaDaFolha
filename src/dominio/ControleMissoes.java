@@ -5,6 +5,8 @@
  */
 package dominio;
 
+import java.util.Observable;
+import java.util.Observer;
 import dominio.Missao;
 import java.util.ArrayList;
 import textFileApp.CreateTextFile;
@@ -14,7 +16,7 @@ import textFileApp.ReadTextFile;
  *
  * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class ControleMissoes {
+public class ControleMissoes extends Observable{
     
     
     private ArrayList<Missao> missoes;
@@ -30,8 +32,9 @@ public class ControleMissoes {
         
         Missao missaoAdicionada = new Missao(nome,descricao,rank);
         this.missoes.add(missaoAdicionada);
-        
+ 
         cadastrarDadosNinja();
+        mudaEstado();
         
     }
     
@@ -44,7 +47,7 @@ public class ControleMissoes {
     
     public void cadastrarDadosNinja(){
          
-        CreateTextFile.openFile("listaNinjas.txt");
+        CreateTextFile.openFile("listaMissoes.txt");
         for(Missao missoes : this.missoes){
             
             CreateTextFile.cadastraMissao(missoes);
@@ -109,6 +112,12 @@ public class ControleMissoes {
 
     public ArrayList<Missao> getMissoes() {
         return missoes;
+    }
+    
+    public void mudaEstado(){
+        setChanged();
+        notifyObservers(this.getMissoes());
+        //System.out.println("Mudou");
     }
     
 }

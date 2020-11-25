@@ -205,6 +205,7 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
         this.idadeNinja.setText("");
         this.meritoNinja.setText("");
     }
+    
     private void consultarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarNinjaActionPerformed
        
         String campos[] = null;
