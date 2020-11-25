@@ -77,4 +77,18 @@ public class CreateTextFile {
             output.close();
         }
     }
+
+	public static void cadastraMissao(Missao missoes) {
+		try{
+            output.format("%s;%s;%s\n",missoes.getNome(), missoes.getDescricao(), missoes.getRank());
+           
+       }
+       catch (FormatterClosedException formatterClosedException) {
+           System.err.println("Erro ao escrever no arquivo. Finalizando.");
+       } catch (NoSuchElementException elementException) {
+           System.err.println("Entrada inválida. Tente novamente!");
+       }
+       
+		
+	}
 } // end class CreateTextFile
