@@ -12,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -170,7 +171,7 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaNinjasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaNinjasValueChanged
-        
+     
         int index = listaNinjas.getSelectedIndex();
         ImageIcon imagem;
         
@@ -184,7 +185,8 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
             labelImagemNinja.setIcon(imagem);
         }
         else
-            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));    
+            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));   
+        
     }//GEN-LAST:event_listaNinjasValueChanged
 
     public ArrayList<Ninja> getNinjas() {
@@ -193,6 +195,14 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
 
     public void setNinjas(ArrayList<Ninja> ninjas) {
         this.ninjas = ninjas;
+    }
+    
+    public void clearCampos(){
+        textoNomeNinja.setText("");
+        textoRankNinja.setText("");
+        textoIdadeNinja.setText("");
+        textoMeritoNinja.setText("");
+        listaNinjas.clearSelection();
     }
     
     private ArrayList<Ninja> ninjas;

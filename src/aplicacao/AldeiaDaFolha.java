@@ -28,14 +28,14 @@ public class AldeiaDaFolha {
             java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        
-        JanelaPrincipal janela = new JanelaPrincipal(controleNinja);
-        janela.setVisible(true);
-        
-        controleNinja.addObserver(janela);
-        
-
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                JanelaPrincipal janela = new JanelaPrincipal(controleNinja);
+                janela.setVisible(true);
                 
+                controleNinja.addObserver(janela);
+            }
+        });       
     }
     
 }
