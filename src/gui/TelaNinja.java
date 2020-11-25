@@ -172,21 +172,29 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
 
     private void listaNinjasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaNinjasValueChanged
      
-        int index = listaNinjas.getSelectedIndex();
+        int index = 0;
         ImageIcon imagem;
         
-        textoNomeNinja.setText(ninjas.get(index).getNome());
-        textoRankNinja.setText(ninjas.get(index).getRank());
-        textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
-        textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
-        
-        if(!ninjas.get(index).getImagem().equals("")){
-            imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
-            labelImagemNinja.setIcon(imagem);
+        if(listaNinjas.getSelectedIndex() >= 0 && listaNinjas.getSelectedIndex() <= ninjas.size()){
+            index = listaNinjas.getSelectedIndex();
+            textoNomeNinja.setText(ninjas.get(index).getNome());
+            textoRankNinja.setText(ninjas.get(index).getRank());
+            textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
+            textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
+
+            if(!ninjas.get(index).getImagem().equals("")){
+                imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
+                labelImagemNinja.setIcon(imagem);
+            }
+            else
+                imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));   
         }
-        else
-            imagem = new ImageIcon(getClass().getResource("/gui/images/ninjaDefault"));   
-        
+        else{
+            textoNomeNinja.setText("");
+            textoRankNinja.setText("");
+            textoIdadeNinja.setText("");
+            textoMeritoNinja.setText("");
+        }
     }//GEN-LAST:event_listaNinjasValueChanged
 
     public ArrayList<Ninja> getNinjas() {
