@@ -308,6 +308,5 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
         ControleNinjas controleAuxNinjas = (ControleNinjas)o;
         this.ninjas = controleAuxNinjas.getNinjas();
         iniciaLista();
-        //System.out.println("Mudou tela ninja");
     }
 }

@@ -123,6 +123,7 @@ public class ControleNinjas extends Observable{
     public void mudaEstado(){
         setChanged();
         notifyObservers(this.getNinjas());
+        System.out.println(this.countObservers());
         //System.out.println("Mudou");
     }
     

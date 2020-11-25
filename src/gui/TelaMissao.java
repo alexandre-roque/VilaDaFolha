@@ -10,6 +10,8 @@ import dominio.ControleNinjas;
 import dominio.Missao;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author alexa
  */
-public class TelaMissao extends javax.swing.JInternalFrame {
+public class TelaMissao extends javax.swing.JInternalFrame implements Observer {
 
     /**
      * Creates new form TelaMissao
@@ -132,44 +134,40 @@ public class TelaMissao extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDescricao)
+                    .addComponent(rankMissao))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDescricao)
-                            .addComponent(rankMissao))
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44))))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(rankMissao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelDescricao)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(rankMissao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelDescricao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(atribuirMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -190,19 +188,19 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         descricaoMissaoPergaminho.setText(descricao);
         
         if(this.missoes.get(index).getRank().equals("S")){
-            dificuldadeMissao.setText("Essa missão é muito difícil, apesar de te conceder muito mérito, existe um perigo eminente de você perder a vida");
+            dificuldadeMissao.setText("Rank S — atribuída apenas para jounnin experiente ou para classificações de nível maior, como os kage.");
         }
         if(this.missoes.get(index).getRank().equals("A")){
-            dificuldadeMissao.setText("Essa missão é difícil, apesar de te conceder mérito, existe um perigo de você perder a vida");
+            dificuldadeMissao.setText("Rank A — são missões atribuídas para jounnin ou níveis superiores. As missões deste nível abrangem todos os tipos de missões existentes, no entanto, de forma moderada ou superior às de seus níveis menores");
         }
         if(this.missoes.get(index).getRank().equals("B")){
-            dificuldadeMissao.setText("Essa missão é tranquila, mas não deve ser subestimada");
+            dificuldadeMissao.setText("Rank B — normalmente atribuídas para chunnin com uma experiência notável ou para um recém jounnin. Este rankeamento abrange normalmente confrontos diretos com outros ninjas, assassinatos e espionagens secretas");
         }
         if(this.missoes.get(index).getRank().equals("C")){
-            dificuldadeMissao.setText("Essa missão é muito tranquila");
+            dificuldadeMissao.setText("Rank C — atribuídas apenas para aqueles que estão no nível gennin em um tempo considerável ou para um chūnin. As missões deste rank normalmente tem baixas chances de um confronto direto com um outro adversário.");
         }
         if(this.missoes.get(index).getRank().equals("D")){
-            dificuldadeMissao.setText("Essa missão é fácil");
+            dificuldadeMissao.setText("Rank D: são missões normalmente atribuídas para aqueles que acabaram de tornar-se um gennin. Estas missões não apresentam nenhum tipo de risco devido geralmente ser pequenos trabalhos em sua vila ou nas redondezas dela");
         }
         
         
@@ -236,5 +234,12 @@ public class TelaMissao extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> listaMissoes;
     private javax.swing.JLabel rankMissao;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ControleMissoes controleAuxMissoes = (ControleMissoes)o;
+        this.missoes = controleAuxMissoes.getMissoes();
+        iniciaLista();
+    }
 
 }

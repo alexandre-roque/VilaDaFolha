@@ -32,8 +32,7 @@ public class ControleMissoes extends Observable{
         Missao missaoAdicionada = new Missao(nome,descricao,rank);
         this.missoes.add(missaoAdicionada);
  
-        cadastrarDadosNinja();
-        mudaEstado();
+        cadastrarDadosMissoes();
         
     }
     
@@ -44,17 +43,18 @@ public class ControleMissoes extends Observable{
         ReadTextFile.closeFile();
     }
     
-    public void cadastrarDadosNinja(){
+    public void cadastrarDadosMissoes(){
          
         CreateTextFile.openFile("listaMissoes.txt");
         for(Missao missoes : this.missoes){
             
             CreateTextFile.cadastraMissao(missoes);
         }
-        CreateTextFile.closeFile();  
+        CreateTextFile.closeFile();
+        mudaEstado();
     }
     
-    public String[] consultarNinja(String nomeMissao){
+    public String[] consultarMissao(String nomeMissao){
         
         String [] campos = new String [3];
         for(Missao missoes : this.missoes){
@@ -84,7 +84,7 @@ public class ControleMissoes extends Observable{
             if(nomeMissao.equals(missoes.getNome())){
                 
                 this.missoes.remove(missoes);
-                cadastrarDadosNinja();
+                cadastrarDadosMissoes();
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public class ControleMissoes extends Observable{
             	missoes.setNome(campos[0]);
             	missoes.setDescricao(campos[1]);
             	missoes.setRank(campos[2]);
-                cadastrarDadosNinja();
+                cadastrarDadosMissoes();
                 return true;
             }
             
@@ -116,7 +116,7 @@ public class ControleMissoes extends Observable{
     public void mudaEstado(){
         setChanged();
         notifyObservers(this.getMissoes());
-        //System.out.println("Mudou");
+        System.out.println(this.countObservers());
     }
     
 }

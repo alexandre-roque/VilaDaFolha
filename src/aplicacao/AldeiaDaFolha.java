@@ -34,8 +34,6 @@ public class AldeiaDaFolha {
             public void run() {
                 JanelaPrincipal janela = new JanelaPrincipal(controleNinja, controleMissoes);
                 janela.setVisible(true);
-                
-                controleNinja.addObserver(janela);
             }
         });       
     }

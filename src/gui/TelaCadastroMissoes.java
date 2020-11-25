@@ -22,9 +22,9 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     
     private ControleMissoes controleMissoes; 
     
-    public TelaCadastroMissoes() {
+    public TelaCadastroMissoes(ControleMissoes controleMissoes) {
         initComponents();
-        this.controleMissoes = new ControleMissoes();
+        this.controleMissoes = controleMissoes;
         this.nomeAntes = "";
     }
 
@@ -212,7 +212,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
         
         String campos[] = null;
         if(!this.textTituloMissao.getText().equals("")){
-            campos = this.controleMissoes.consultarNinja(this.textTituloMissao.getText());
+            campos = this.controleMissoes.consultarMissao(this.textTituloMissao.getText());
             nomeAntes = this.textTituloMissao.getText();
         }
         
@@ -221,7 +221,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
             this.textDescricaoMissao.setText(campos[1]);
             this.textRankMissao.setText(campos[2]);
         }else{
-           JOptionPane.showMessageDialog(this, " Ninja não encontrado !", "Aviso", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(this, " Missão não encontrada !", "Aviso", JOptionPane.ERROR_MESSAGE);
            limparTela();
         }
         
@@ -229,10 +229,10 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
 
     private void removerMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerMissaoEvt
         if(this.controleMissoes.removerMissao(this.textTituloMissao.getText())==true){
-            JOptionPane.showMessageDialog(this, "Ninja removido com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Missão removida com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
             limparTela();
         }else{
-            JOptionPane.showMessageDialog(this, " Não existe esse Ninja!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
+            JOptionPane.showMessageDialog(this, " Não existe essa Missão!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
             limparTela();
         }
     }//GEN-LAST:event_removerMissaoEvt
@@ -247,11 +247,11 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
             camposNinja[3] = this.nomeAntes;
         
             if(this.controleMissoes.editarMissao(camposNinja) == true){
-                JOptionPane.showMessageDialog(this, "Ninja Editado com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Missão Editada com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 limparTela();
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Consulte o NinjaPrimeiro para depois Editar!!!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Consulte a Missão Primeiro para depois Editar!!!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
             limparTela();
         }
     }//GEN-LAST:event_editarMissaoEvt
