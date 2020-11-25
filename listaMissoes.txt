@@ -1,3 +1,6 @@
 Resgate;Resgatar gato que está preso na fiação do hospital;D
 Envio;Levar pergaminho secreto para vila da areia;S
 Verificação;Verificar toda a área próxima ao prédio do Hokage;B
+Localize Bisuke;Encontre o cachorro Bisuke, que foi visto pela última vez com Kakashi próximo ao Ichiraku Ramen;D
+Espionagem;Vá para a vila do som e veja o que Orochimaru está fazendo escondido a tanto tempo.;A
+Exame Chunnin;Ajudar na organização do exame chunnin;D
