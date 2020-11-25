@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 /**
  *
  * @author alexa
  */
-public class cadastroNinjas extends javax.swing.JInternalFrame {
+public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form cadastroNinjas
+     * Creates new form TelaCadastroMissoes
      */
-    public cadastroNinjas() {
+    public TelaCadastroMissoes() {
         initComponents();
     }
 
@@ -31,11 +26,11 @@ public class cadastroNinjas extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGap(0, 619, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
