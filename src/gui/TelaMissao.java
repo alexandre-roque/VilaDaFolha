@@ -5,22 +5,25 @@
  */
 package gui;
 
+import dominio.ControleMissoes;
 import dominio.Missao;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.DefaultListModel;
 
 /**
  *
  * @author alexa
  */
-public class TelaMissao extends javax.swing.JInternalFrame {
+public class TelaMissao extends javax.swing.JInternalFrame implements Observer{
 
     /**
      * Creates new form TelaMissao
      */
-    public TelaMissao(ArrayList<Missao> missoes) {
-        this.missoes = missoes;
+    public TelaMissao(ControleMissoes controleMissoes) {
+        this.missoes = controleMissoes.getMissoes();
         initComponents(); // PODEM TER 25 CARACTERES POR LINHA NO LABEL "mensagem"
         iniciaLista();
     }
@@ -192,6 +195,7 @@ public class TelaMissao extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private ControleMissoes controleMissoes;
     private ArrayList<Missao> missoes;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,5 +209,12 @@ public class TelaMissao extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> listaMissoes;
     private javax.swing.JLabel rankMissao;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ControleMissoes controleAuxMissoes = (ControleMissoes)o;
+        this.missoes = controleAuxMissoes.getMissoes();
+        iniciaLista();    
+    }
 
 }

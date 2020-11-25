@@ -7,6 +7,7 @@ package dominio;
 
 import dominio.Missao;
 import java.util.ArrayList;
+import java.util.Observable;
 import textFileApp.CreateTextFile;
 import textFileApp.ReadTextFile;
 
@@ -14,7 +15,7 @@ import textFileApp.ReadTextFile;
  *
  * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class ControleMissoes {
+public class ControleMissoes extends Observable{
     
     
     private ArrayList<Missao> missoes;
@@ -31,7 +32,9 @@ public class ControleMissoes {
         Missao missaoAdicionada = new Missao(nome,descricao,rank);
         this.missoes.add(missaoAdicionada);
         
-        cadastrarDadosNinja();
+        cadastrarDadosMissao();
+        
+        mudaEstado();
         
     }
     
@@ -42,9 +45,9 @@ public class ControleMissoes {
         ReadTextFile.closeFile();
     }
     
-    public void cadastrarDadosNinja(){
+    public void cadastrarDadosMissao(){
          
-        CreateTextFile.openFile("listaNinjas.txt");
+        CreateTextFile.openFile("listaMissoes.txt");
         for(Missao missoes : this.missoes){
             
             CreateTextFile.cadastraMissao(missoes);
@@ -52,7 +55,7 @@ public class ControleMissoes {
         CreateTextFile.closeFile();  
     }
     
-    public String[] consultarNinja(String nomeMissao){
+    public String[] consultarMissao(String nomeMissao){
         
         String [] campos = new String [3];
         for(Missao missoes : this.missoes){
@@ -82,7 +85,8 @@ public class ControleMissoes {
             if(nomeMissao.equals(missoes.getNome())){
                 
                 this.missoes.remove(missoes);
-                cadastrarDadosNinja();
+                cadastrarDadosMissao();
+                mudaEstado();
                 return true;
             }
         }
@@ -98,7 +102,10 @@ public class ControleMissoes {
             	missoes.setNome(campos[0]);
             	missoes.setDescricao(campos[1]);
             	missoes.setRank(campos[2]);
-                cadastrarDadosNinja();
+                cadastrarDadosMissao();
+                
+                mudaEstado();
+                
                 return true;
             }
             
@@ -109,6 +116,12 @@ public class ControleMissoes {
 
     public ArrayList<Missao> getMissoes() {
         return missoes;
+    }
+    
+    public void mudaEstado(){
+        setChanged();
+        notifyObservers(this.getMissoes());
+        //System.out.println("Mudou estado missoes");
     }
     
 }

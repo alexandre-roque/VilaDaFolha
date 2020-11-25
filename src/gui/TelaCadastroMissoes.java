@@ -1,5 +1,7 @@
 package gui;
 
+import dominio.ControleMissoes;
+
 /**
  *
  * @author alexa
@@ -9,7 +11,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaCadastroMissoes
      */
-    public TelaCadastroMissoes() {
+    public TelaCadastroMissoes(ControleMissoes controleMissoes) {
         initComponents();
     }
 

@@ -1,5 +1,6 @@
 package gui;
 
+import dominio.ControleMissoes;
 import dominio.ControleNinjas;
 import dominio.ControleNinjas;
 import dominio.Missao;
@@ -31,12 +32,13 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
         initInternalFrames();
         setIconImage();
         controleNinja.addObserver((Observer) telaNinja);
+        controleNinja.addObserver((Observer) telaMissao);
     }
     
     public void initListaMissoes(){
-        ReadTextFile.openFile("listaMissoes.txt");
-        missoes = ReadTextFile.readRecordsMissoes();
-        ReadTextFile.closeFile();
+            
+        controleMissoes.lerDadosMissao();
+                
     }
     
     public void initListaNinjas(){
@@ -47,9 +49,9 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     
     public void initInternalFrames(){
         telaNinja = new TelaNinja(this.controleNinja);
-        telaMissao = new TelaMissao(this.missoes);
+        telaMissao = new TelaMissao(this.controleMissoes);
         telaCadastroNinjas = new TelaCadastroNinjas(this.controleNinja);
-        telaCadastroMissoes = new TelaCadastroMissoes();
+        telaCadastroMissoes = new TelaCadastroMissoes(this.controleMissoes);
         painelPrincipal.add(telaNinja);
         painelPrincipal.add(telaMissao);
         painelPrincipal.add(telaCadastroNinjas);
@@ -218,6 +220,7 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JInternalFrame telaCadastroNinjas;
     private javax.swing.JInternalFrame telaCadastroMissoes;
     private ControleNinjas controleNinja;
+    private ControleMissoes controleMissoes;
     
     @Override
     public void update(Observable o, Object arg) {

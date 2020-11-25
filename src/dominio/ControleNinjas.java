@@ -108,7 +108,11 @@ public class ControleNinjas extends Observable{
                ninjas.setRank(campos[2]);
                ninjas.setMerito(Double.parseDouble(campos[3]));
                cadastrarDadosNinja();
+               
+               mudaEstado();
+               
                return true;
+               
             }
             
         }
@@ -123,7 +127,7 @@ public class ControleNinjas extends Observable{
     public void mudaEstado(){
         setChanged();
         notifyObservers(this.getNinjas());
-        //System.out.println("Mudou");
+        //System.out.println("Mudou estado ninjas");
     }
     
 }
