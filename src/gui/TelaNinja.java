@@ -200,7 +200,8 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
             textoNomeNinja.setText(ninjas.get(index).getNome());
             textoRankNinja.setText(ninjas.get(index).getRank());
             textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
-
+            textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
+            
             if(!ninjas.get(index).getImagem().equals("")){
                 imagem = new ImageIcon(getClass().getResource(ninjas.get(index).getImagem()));
                 labelImagemNinja.setIcon(imagem);
@@ -305,6 +306,7 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
         textoIdadeNinja.setText("");
         textoMeritoNinja.setText("");
         listaNinjas.clearSelection();
+        labelImagemNinja.setIcon(null);
     }
     
     private ControleNinjas controleNinja;

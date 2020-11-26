@@ -118,7 +118,7 @@ public class ControleMissoes extends Observable{
     public void mudaEstado(){
         setChanged();
         notifyObservers(this.getMissoes());
-        System.out.println(this.countObservers());
+        //System.out.println(this.countObservers());
     }
     
 }

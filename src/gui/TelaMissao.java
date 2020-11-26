@@ -214,6 +214,7 @@ public class TelaMissao extends javax.swing.JInternalFrame implements Observer {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void atribuirMissao(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atribuirMissao
+        JOptionPane.showMessageDialog(this, "Escolha um ninja para fazer essa missão!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         ((TelaNinja) telaNinja).setDesignarMissao(true);
         ((TelaNinja) telaNinja).setDificuldadeMissaoAtribuida(this.rankMissao.getText());
