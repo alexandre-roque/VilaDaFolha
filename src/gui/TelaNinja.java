@@ -26,7 +26,9 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
      */
     public TelaNinja(ControleNinjas controleNinja) {
         initComponents();
+        
         this.ninjas = controleNinja.getNinjas();
+        this.controleNinja = controleNinja;
         this.designarMissao = false;
         this.dificuldadeMissaoAtribuida = "";
         iniciaLista();
@@ -211,9 +213,10 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
                 String mensagem = "O ninja ";
                 mensagem = mensagem.concat(ninjas.get(index).getNome());
                 
-                if(this.getDificuldadeMissaoAtribuida().equals("S"))
+                if(this.getDificuldadeMissaoAtribuida().equals("Rank: S"))
                 {
-                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 100000);
+                    
+                    controleNinja.adicionaMerito(ninjas.get(index), 100000);
                     
                     mensagem = mensagem.concat(" ganhou 100000 pontos de mérito.");                   
                     JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
@@ -221,7 +224,7 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
 
                 else if(this.getDificuldadeMissaoAtribuida().equals("Rank: A"))
                 {
-                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 10000 );
+                    controleNinja.adicionaMerito(ninjas.get(index), 10000);
                     
                     mensagem = mensagem.concat(" ganhou 10000 pontos de mérito.");      
                     JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
@@ -229,21 +232,21 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
 
                 else if(this.getDificuldadeMissaoAtribuida().equals("Rank: B"))
                 {
-                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 1000  );
+                    controleNinja.adicionaMerito(ninjas.get(index), 1000);
                     mensagem = mensagem.concat(" ganhou 1000 pontos de mérito.");      
                     JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
                 }
 
                 else if(this.getDificuldadeMissaoAtribuida().equals("Rank: C"))
                 {
-                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 100   );
+                    controleNinja.adicionaMerito(ninjas.get(index), 100);
                     mensagem = mensagem.concat(" ganhou 100 pontos de mérito.");      
                     JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
                 }
 
                 else if(this.getDificuldadeMissaoAtribuida().equals("Rank: D"))
                 {
-                    ninjas.get(index).setMerito(ninjas.get(index).getMerito() + 10    );
+                    controleNinja.adicionaMerito(ninjas.get(index), 10);
                     mensagem = mensagem.concat(" ganhou 10 pontos de mérito.");      
                     JOptionPane.showMessageDialog(this, mensagem, "Missão concluída", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -256,6 +259,9 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
                 this.setDesignarMissao(false);
             }
             
+            textoNomeNinja.setText(ninjas.get(index).getNome());
+            textoRankNinja.setText(ninjas.get(index).getRank());
+            textoIdadeNinja.setText(String.valueOf(ninjas.get(index).getIdade()));
             textoMeritoNinja.setText(String.valueOf(ninjas.get(index).getMerito()));
             
         }
@@ -283,6 +289,7 @@ public class TelaNinja extends javax.swing.JInternalFrame implements Observer{
         listaNinjas.clearSelection();
     }
     
+    private ControleNinjas controleNinja;
     private ArrayList<Ninja> ninjas;
     private boolean designarMissao;
     private String dificuldadeMissaoAtribuida;
