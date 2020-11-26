@@ -45,7 +45,6 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
         labelTituloMissao = new javax.swing.JLabel();
         textTituloMissao = new javax.swing.JTextField();
         labelDescricaoMissao = new javax.swing.JLabel();
-        textDescricaoMissao = new javax.swing.JTextField();
         lavelRankMissao = new javax.swing.JLabel();
         textRankMissao = new javax.swing.JTextField();
         cadastrarMissao = new javax.swing.JButton();
@@ -53,6 +52,9 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
         removerMissao = new javax.swing.JButton();
         editarMissao = new javax.swing.JButton();
         limparMissao = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textDescricaoMissao = new javax.swing.JTextArea();
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("Nome da missão: ");
@@ -105,6 +107,13 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Ranks possíveis: S , A , B , C , D");
+
+        textDescricaoMissao.setColumns(20);
+        textDescricaoMissao.setLineWrap(true);
+        textDescricaoMissao.setRows(5);
+        jScrollPane1.setViewportView(textDescricaoMissao);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -112,64 +121,62 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTituloMissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTituloMissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(textDescricaoMissao)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(removerMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(editarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelDescricaoMissao)
-                                        .addComponent(textTituloMissao))
-                                    .addGap(88, 88, 88)
-                                    .addComponent(cadastrarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(consultarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(48, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lavelRankMissao)
+                            .addComponent(labelDescricaoMissao)
+                            .addComponent(textTituloMissao)
                             .addComponent(textRankMissao)
-                            .addComponent(lavelRankMissao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(limparMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(115, 115, 115))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                        .addGap(88, 88, 88)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(cadastrarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(consultarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(limparMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(removerMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(17, 17, 17))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelDescricaoMissao, labelTituloMissao, lavelRankMissao, textDescricaoMissao, textRankMissao, textTituloMissao});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelDescricaoMissao, labelTituloMissao, lavelRankMissao});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addComponent(labelTituloMissao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textTituloMissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDescricaoMissao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textTituloMissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelDescricaoMissao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textDescricaoMissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lavelRankMissao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textRankMissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cadastrarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(removerMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editarMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(limparMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addComponent(limparMissao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lavelRankMissao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textRankMissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,8 +190,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -192,8 +198,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void limparTela(){
-        
+    protected void limparTela(){
         this.textTituloMissao.setText("");
         this.textDescricaoMissao.setText("");
         this.textRankMissao.setText("");
@@ -201,11 +206,11 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     
     private void cadastarMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastarMissaoEvt
         //Cadastra a nova missão
-        controleMissoes.adicionaMissao(this.textTituloMissao.getText(),this.textDescricaoMissao.getText(),this.textRankMissao.getText());
-        //Mensagem de Inclusao
-        JOptionPane.showMessageDialog(this, "Missão incluída com sucesso!", "Inclusão sucedida", JOptionPane.INFORMATION_MESSAGE);
-        //Limpa os campos
-        limparTela();
+        if(controleMissoes.adicionaMissao(this.textTituloMissao.getText(),this.textDescricaoMissao.getText(),this.textRankMissao.getText())){
+            JOptionPane.showMessageDialog(this, "Missão incluída com sucesso!", "Inclusão sucedida", JOptionPane.INFORMATION_MESSAGE);
+            limparTela();
+        }else
+            JOptionPane.showMessageDialog(this, "Ausência ou erro nos dados!", "Falha na inclusão", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_cadastarMissaoEvt
 
     private void consultarMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarMissaoEvt
@@ -228,7 +233,7 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_consultarMissaoEvt
 
     private void removerMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerMissaoEvt
-        if(this.controleMissoes.removerMissao(this.textTituloMissao.getText())==true){
+        if(this.controleMissoes.removerMissao(this.textTituloMissao.getText())){
             JOptionPane.showMessageDialog(this, "Missão removida com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
             limparTela();
         }else{
@@ -238,22 +243,21 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_removerMissaoEvt
 
     private void editarMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarMissaoEvt
-        String []camposNinja = new String[4];
-        if(!nomeAntes.equals("")){
-            
+        String []camposNinja = new String[3];
+        if(!this.textTituloMissao.getText().equals("")){
             camposNinja[0] = this.textTituloMissao.getText();
             camposNinja[1] = this.textDescricaoMissao.getText();
             camposNinja[2] = this.textRankMissao.getText();
-            camposNinja[3] = this.nomeAntes;
-        
-            if(this.controleMissoes.editarMissao(camposNinja) == true){
+            if(this.controleMissoes.editarMissao(camposNinja)){
                 JOptionPane.showMessageDialog(this, "Missão Editada com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 limparTela();
-            }
+            }else{
+                JOptionPane.showMessageDialog(this, "Dados incoerentes para a edição!", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }  
         }else{
-            JOptionPane.showMessageDialog(this, "Consulte a Missão Primeiro para depois Editar!!!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
-            limparTela();
+            JOptionPane.showMessageDialog(this, "Digite o nome da missão!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_editarMissaoEvt
 
     private void limparMissaoEvt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparMissaoEvt
@@ -266,15 +270,17 @@ public class TelaCadastroMissoes extends javax.swing.JInternalFrame {
     private javax.swing.JButton consultarMissao;
     private javax.swing.JButton editarMissao;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelDescricaoMissao;
     private javax.swing.JLabel labelTituloMissao;
     private javax.swing.JLabel lavelRankMissao;
     private javax.swing.JButton limparMissao;
     private javax.swing.JButton removerMissao;
-    private javax.swing.JTextField textDescricaoMissao;
+    private javax.swing.JTextArea textDescricaoMissao;
     private javax.swing.JTextField textRankMissao;
     private javax.swing.JTextField textTituloMissao;
     // End of variables declaration//GEN-END:variables

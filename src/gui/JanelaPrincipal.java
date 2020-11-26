@@ -205,7 +205,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     
     private void fechaInternalFrames(){
         telaNinja.dispose();
+        ((TelaMissao) telaMissao).clearCampos();
         telaMissao.dispose();
+        ((TelaNinja) telaNinja).clearCampos();
         telaCadastroNinjas.dispose();
         telaCadastroMissoes.dispose();
     }

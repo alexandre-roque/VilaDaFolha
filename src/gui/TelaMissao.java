@@ -176,33 +176,36 @@ public class TelaMissao extends javax.swing.JInternalFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaMissoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaMissoesValueChanged
-        int index = listaMissoes.getSelectedIndex();
-
+        int index = 0;
         String descricao = "";
         String descricaoRank;
-        descricao = ("<html>"+this.missoes.get(index).getDescricao()+"<html>");
         
-        String rank = this.missoes.get(index).getRank();
-        
-        rankMissao.setText("Rank: "+rank);
-        descricaoMissaoPergaminho.setText(descricao);
-        
-        if(this.missoes.get(index).getRank().equals("S")){
-            dificuldadeMissao.setText("Rank S — atribuída apenas para jounnin experiente ou para classificações de nível maior, como os kage.");
+        if(listaMissoes.getSelectedIndex() >= 0 && listaMissoes.getSelectedIndex() <= missoes.size()){
+            index = listaMissoes.getSelectedIndex();
+            
+            descricao = ("<html>"+this.missoes.get(index).getDescricao()+"<html>");
+
+            String rank = this.missoes.get(index).getRank();
+
+            rankMissao.setText("Rank: "+rank);
+            descricaoMissaoPergaminho.setText(descricao);
+
+            if(this.missoes.get(index).getRank().equals("S")){
+                dificuldadeMissao.setText("Rank S — atribuída apenas para jounnin experiente ou para classificações de nível maior, como os kage.");
+            }
+            if(this.missoes.get(index).getRank().equals("A")){
+                dificuldadeMissao.setText("Rank A — são missões atribuídas para jounnin ou níveis superiores. As missões deste nível abrangem todos os tipos de missões existentes, no entanto, de forma moderada ou superior às de seus níveis menores");
+            }
+            if(this.missoes.get(index).getRank().equals("B")){
+                dificuldadeMissao.setText("Rank B — normalmente atribuídas para chunnin com uma experiência notável ou para um recém jounnin. Este rankeamento abrange normalmente confrontos diretos com outros ninjas, assassinatos e espionagens secretas");
+            }
+            if(this.missoes.get(index).getRank().equals("C")){
+                dificuldadeMissao.setText("Rank C — atribuídas apenas para aqueles que estão no nível gennin em um tempo considerável ou para um chūnin. As missões deste rank normalmente tem baixas chances de um confronto direto com um outro adversário.");
+            }
+            if(this.missoes.get(index).getRank().equals("D")){
+                dificuldadeMissao.setText("Rank D: são missões normalmente atribuídas para aqueles que acabaram de tornar-se um gennin. Estas missões não apresentam nenhum tipo de risco devido geralmente ser pequenos trabalhos em sua vila ou nas redondezas dela");
+            }
         }
-        if(this.missoes.get(index).getRank().equals("A")){
-            dificuldadeMissao.setText("Rank A — são missões atribuídas para jounnin ou níveis superiores. As missões deste nível abrangem todos os tipos de missões existentes, no entanto, de forma moderada ou superior às de seus níveis menores");
-        }
-        if(this.missoes.get(index).getRank().equals("B")){
-            dificuldadeMissao.setText("Rank B — normalmente atribuídas para chunnin com uma experiência notável ou para um recém jounnin. Este rankeamento abrange normalmente confrontos diretos com outros ninjas, assassinatos e espionagens secretas");
-        }
-        if(this.missoes.get(index).getRank().equals("C")){
-            dificuldadeMissao.setText("Rank C — atribuídas apenas para aqueles que estão no nível gennin em um tempo considerável ou para um chūnin. As missões deste rank normalmente tem baixas chances de um confronto direto com um outro adversário.");
-        }
-        if(this.missoes.get(index).getRank().equals("D")){
-            dificuldadeMissao.setText("Rank D: são missões normalmente atribuídas para aqueles que acabaram de tornar-se um gennin. Estas missões não apresentam nenhum tipo de risco devido geralmente ser pequenos trabalhos em sua vila ou nas redondezas dela");
-        }
-        
         
     }//GEN-LAST:event_listaMissoesValueChanged
 
@@ -218,6 +221,12 @@ public class TelaMissao extends javax.swing.JInternalFrame implements Observer {
         telaNinja.show();
     }//GEN-LAST:event_atribuirMissao
 
+    public void clearCampos(){
+        descricaoMissaoPergaminho.setText("");
+        dificuldadeMissao.setText("");
+        listaMissoes.clearSelection();
+    }
+    
     private ControleMissoes controleMissoes;
     private ArrayList<Missao> missoes;
     private javax.swing.JInternalFrame telaNinja;

@@ -9,6 +9,7 @@ import dominio.Ninja;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import textFileApp.ConfereInformacao;
 import textFileApp.CreateTextFile;
 import textFileApp.ReadTextFile;
 
@@ -28,15 +29,30 @@ public class ControleNinjas extends Observable{
     }
     
     
-    public void  adicionaNinja(String nome,String idadeNinja,String rank,String meritoNinja){
-        
-        int idade = Integer.parseInt(idadeNinja);
-        double merito = Double.parseDouble(meritoNinja);
-        Ninja ninjaAdicionado = new Ninja(nome,idade,rank,merito,"");
-        this.ninjas.add(ninjaAdicionado);
-        cadastrarDadosNinja();
-        mudaEstado();
-        //System.out.println("Passou do adicionar");
+    public boolean adicionaNinja(String nome,String idadeNinja,String rank,String meritoNinja){
+            int idade = 0;
+            double merito = 0;
+            
+            if(ConfereInformacao.isNumeric(idadeNinja)){
+                idade = Integer.parseInt(idadeNinja);
+            }else{
+                return false;
+            }
+            
+            if(ConfereInformacao.isNumeric(meritoNinja)){
+                merito = Double.parseDouble(meritoNinja);
+            }else
+                return false;
+            
+            if(ConfereInformacao.temConteudo(rank) && ConfereInformacao.temConteudo(nome)){
+                Ninja ninjaAdicionado = new Ninja(nome,idade,rank,merito,"");
+                this.ninjas.add(ninjaAdicionado);
+                cadastrarDadosNinja();
+                mudaEstado();
+                return true;
+            }
+            
+            return false;
     }
     
     public void lerDadosNinja(){
@@ -59,6 +75,7 @@ public class ControleNinjas extends Observable{
     public String[] consultarNinja(String nomeNinja){
         
         String [] campos = new String [4];
+        
         for(Ninja ninja : this.ninjas){
             
             if(ninja.getNome().startsWith(nomeNinja)){
@@ -83,11 +100,11 @@ public class ControleNinjas extends Observable{
     
     public boolean removerNinja(String nomeNinja){
         
-        for(Ninja ninjas : this.ninjas){
+        for(Ninja ninja : this.ninjas){
             
-            if(nomeNinja.equals(ninjas.getNome())){
+            if(nomeNinja.equals(ninja.getNome())){
                 
-                this.ninjas.remove(ninjas);
+                this.ninjas.remove(ninja);
                 cadastrarDadosNinja();
                 //System.out.println("Passou do remover");
                 mudaEstado();
@@ -100,19 +117,17 @@ public class ControleNinjas extends Observable{
     
     public boolean editarNinja(String[] campos){
         
-        for(Ninja ninjas : this.ninjas){
-            
-            if(campos[4].equals(ninjas.getNome())){
-               ninjas.setNome(campos[0]);
-               ninjas.setIdade(Integer.parseInt(campos[1]));
-               ninjas.setRank(campos[2]);
-               ninjas.setMerito(Double.parseDouble(campos[3]));
-               cadastrarDadosNinja();
-               return true;
+        if(ConfereInformacao.isNumeric(campos[1]) && ConfereInformacao.temConteudo(campos[2]) && ConfereInformacao.isNumeric(campos[3])){
+            for(Ninja ninja : this.ninjas){
+                if(campos[0].equals(ninja.getNome())){
+                   ninja.setIdade(Integer.parseInt(campos[1]));
+                   ninja.setRank(campos[2]);
+                   ninja.setMerito(Double.parseDouble(campos[3]));
+                   cadastrarDadosNinja();
+                   return true;
+                } 
             }
-            
         }
-        
         return false;
     }
 
