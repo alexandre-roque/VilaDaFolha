@@ -133,6 +133,7 @@ public class ControleNinjas extends Observable{
     
     public void adicionaMerito(Ninja ninja, double quantidade){
         ninja.setMerito(ninja.getMerito()+ quantidade );
+        cadastrarDadosNinja();
         mudaEstado();
         //return true;
     }
