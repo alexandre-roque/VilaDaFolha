@@ -1,15 +1,17 @@
 package aplicacao;
 
+import dominio.ControleMissoes;
 import dominio.ControleNinjas;
 import gui.JanelaPrincipal;
 
 /**
  *
- * @author alexa
+ * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
 public class AldeiaDaFolha {
     public static void main(String args[]) {
         ControleNinjas controleNinja = new ControleNinjas();
+        ControleMissoes controleMissoes = new ControleMissoes();
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -30,10 +32,8 @@ public class AldeiaDaFolha {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JanelaPrincipal janela = new JanelaPrincipal(controleNinja);
+                JanelaPrincipal janela = new JanelaPrincipal(controleNinja, controleMissoes);
                 janela.setVisible(true);
-                
-                controleNinja.addObserver(janela);
             }
         });       
     }

@@ -1,10 +1,11 @@
 Naruto Uzumaki;Hokage;32;1500000.0;/gui/images/naruto.png
-Sasuke Uchiha;Jounin;33;1000000.0;/gui/images/sasuke.png
-Alexandre Roque;Jounin;19;900000.0;/gui/images/alexandre.png
-Vitor Santana;Genin;22;800.0;/gui/images/ninjaDefault.png
-Ronaldo Zica;Chunnin;20;129314.0;/gui/images/ninjaDefault.png
-Alex;Genin;20;0.0;/gui/images/ninjaDefault.png
-Nasser;Jounin;20;880000.0;/gui/images/nasser.png
+Sasuke Uchiha;Jounin;33;1001000.0;/gui/images/sasuke.png
+Alexandre Roque;Jounin;19;900010.0;/gui/images/alexandre.png
+Vitor Santana;Genin;22;10800.0;/gui/images/vitor.png
+Ronaldo Zica;Chunnin;20;129314.0;/gui/images/ronaldo.png
+Nasser;Jounin;22;980010.0;/gui/images/nasser.png
+Henrique Coelho;Jounin;22;890000.0;/gui/images/coelho.png
+Alex;Genin;20;20020.0;/gui/images/alex.png
 Mateus;Genin;22;10.0;/gui/images/ninjaDefault.png
 Marcelo;Genin;20;15.0;/gui/images/ninjaDefault.png
 Shanks;Jounin;42;100000.0;/gui/images/ninjaDefault.png
