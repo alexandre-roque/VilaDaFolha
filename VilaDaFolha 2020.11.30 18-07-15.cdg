@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="VilaDaFolha">
+  <ClassDiagramComponents>
+    <Class name="AldeiaDaFolha" package="aplicacao" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ControleMissoes" package="dominio" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="missoes" type="ArrayList&lt;Missao&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adicionaMissao" returnType="boolean" visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="descricao"/>
+          <Argument type="String" name="rank"/>
+        </Method>
+        <Method name="lerDadosMissao" returnType="void" visibility="public"/>
+        <Method name="cadastrarDadosMissoes" returnType="void" visibility="public"/>
+        <Method name="consultarMissao" returnType="String[]" visibility="public">
+          <Argument type="String" name="nomeMissao"/>
+        </Method>
+        <Method name="removerMissao" returnType="boolean" visibility="public">
+          <Argument type="String" name="nomeMissao"/>
+        </Method>
+        <Method name="editarMissao" returnType="boolean" visibility="public">
+          <Argument type="String[]" name="campos"/>
+        </Method>
+        <Method name="getMissoes" returnType="ArrayList&lt;Missao&gt;" visibility="public"/>
+        <Method name="mudaEstado" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ControleNinjas" package="dominio" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="ninjas" type="ArrayList&lt;Ninja&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adicionaNinja" returnType="boolean" visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="idadeNinja"/>
+          <Argument type="String" name="rank"/>
+          <Argument type="String" name="meritoNinja"/>
+        </Method>
+        <Method name="lerDadosNinja" returnType="void" visibility="public"/>
+        <Method name="cadastrarDadosNinja" returnType="void" visibility="public"/>
+        <Method name="consultarNinja" returnType="String[]" visibility="public">
+          <Argument type="String" name="nomeNinja"/>
+        </Method>
+        <Method name="removerNinja" returnType="boolean" visibility="public">
+          <Argument type="String" name="nomeNinja"/>
+        </Method>
+        <Method name="editarNinja" returnType="boolean" visibility="public">
+          <Argument type="String[]" name="campos"/>
+        </Method>
+        <Method name="adicionaMerito" returnType="void" visibility="public">
+          <Argument type="Ninja" name="ninja"/>
+          <Argument type="double" name="quantidade"/>
+        </Method>
+        <Method name="getNinjas" returnType="ArrayList&lt;Ninja&gt;" visibility="public"/>
+        <Method name="mudaEstado" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Missao" package="dominio" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="descricao" type="String" visibility="private"/>
+        <Field name="rank" type="String" visibility="private"/>
+        <Field name="gerador" type="Random" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="descricao"/>
+          <Argument type="String" name="rank"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDescricao" returnType="String" visibility="public"/>
+        <Method name="setDescricao" returnType="void" visibility="public">
+          <Argument type="String" name="descricao"/>
+        </Method>
+        <Method name="getRank" returnType="String" visibility="public"/>
+        <Method name="setRank" returnType="void" visibility="public">
+          <Argument type="String" name="rank"/>
+        </Method>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="calculaMerito" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Ninja" package="dominio" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="idade" type="int" visibility="private"/>
+        <Field name="rank" type="String" visibility="private"/>
+        <Field name="merito" type="double" visibility="private"/>
+        <Field name="imagem" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="int" name="idade"/>
+          <Argument type="String" name="rank"/>
+          <Argument type="double" name="merito"/>
+          <Argument type="String" name="imagem"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getIdade" returnType="int" visibility="public"/>
+        <Method name="setIdade" returnType="void" visibility="public">
+          <Argument type="int" name="idade"/>
+        </Method>
+        <Method name="getRank" returnType="String" visibility="public"/>
+        <Method name="setRank" returnType="void" visibility="public">
+          <Argument type="String" name="rank"/>
+        </Method>
+        <Method name="getMerito" returnType="double" visibility="public"/>
+        <Method name="setMerito" returnType="void" visibility="public">
+          <Argument type="double" name="merito"/>
+        </Method>
+        <Method name="getImagem" returnType="String" visibility="public"/>
+        <Method name="setImagem" returnType="void" visibility="public">
+          <Argument type="String" name="imagem"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JanelaPrincipal" package="gui" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="missoes" type="ArrayList&lt;Missao&gt;" visibility="private"/>
+        <Field name="telaNinja" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="telaMissao" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="telaCadastroNinjas" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="telaCadastroMissoes" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="controleNinja" type="ControleNinjas" visibility="private"/>
+        <Field name="controleMissoes" type="ControleMissoes" visibility="private"/>
+        <Field name="cadastroMissoes" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cadastroNinjas" type="javax.swing.JButton" visibility="private"/>
+        <Field name="imagemVila" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="listaMissoes" type="javax.swing.JButton" visibility="private"/>
+        <Field name="listaNinjas" type="javax.swing.JButton" visibility="private"/>
+        <Field name="painelPrincipal" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ControleNinjas" name="controleNinja"/>
+          <Argument type="ControleMissoes" name="controleMissoes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initListaMissoes" returnType="void" visibility="public"/>
+        <Method name="initListaNinjas" returnType="void" visibility="public"/>
+        <Method name="initInternalFrames" returnType="void" visibility="public"/>
+        <Method name="getMissoes" returnType="ArrayList&lt;Missao&gt;" visibility="public"/>
+        <Method name="setMissoes" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Missao&gt;" name="missoes"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="listaNinjasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="listaMissoesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cadastroNinjasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cadastroMissoesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="fechaInternalFrames" returnType="void" visibility="private"/>
+        <Method name="setIconImage" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="TelaCadastroMissoes" package="gui" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="nomeAntes" type="String" visibility="private"/>
+        <Field name="controleMissoes" type="ControleMissoes" visibility="private"/>
+        <Field name="cadastrarMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="consultarMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="editarMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTextField3" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="labelDescricaoMissao" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelTituloMissao" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lavelRankMissao" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="limparMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="removerMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="textDescricaoMissao" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="textRankMissao" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textTituloMissao" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ControleMissoes" name="controleMissoes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="limparTela" returnType="void" visibility="protected"/>
+        <Method name="cadastarMissaoEvt" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="consultarMissaoEvt" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="removerMissaoEvt" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="editarMissaoEvt" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limparMissaoEvt" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TelaCadastroNinjas" package="gui" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="controleNinja" type="ControleNinjas" visibility="private"/>
+        <Field name="idadeNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="meritoNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="nomeNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="rankNinja" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ControleNinjas" name="controleNinja"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="cadastrarNinjaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limparTela" returnType="void" visibility="protected"/>
+        <Method name="consultarNinjaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="removerNinjaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limparCamposActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="editarNinjaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TelaMissao" package="gui" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="controleMissoes" type="ControleMissoes" visibility="private"/>
+        <Field name="missoes" type="ArrayList&lt;Missao&gt;" visibility="private"/>
+        <Field name="telaNinja" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="atribuirMissao" type="javax.swing.JButton" visibility="private"/>
+        <Field name="descricaoMissaoPergaminho" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="dificuldadeMissao" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="fundoPergaminho" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="labelDescricao" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="listaMissoes" type="javax.swing.JList&lt;String&gt;" visibility="private"/>
+        <Field name="rankMissao" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ControleMissoes" name="controleMissoes"/>
+          <Argument type="javax.swing.JInternalFrame" name="telaNinja"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciaLista" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="listaMissoesValueChanged" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.ListSelectionEvent" name="evt"/>
+        </Method>
+        <Method name="formInternalFrameClosing" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.InternalFrameEvent" name="evt"/>
+        </Method>
+        <Method name="atribuirMissao" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="clearCampos" returnType="void" visibility="public"/>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="Observable" name="o"/>
+          <Argument type="Object" name="arg"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TelaNinja" package="gui" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="controleNinja" type="ControleNinjas" visibility="private"/>
+        <Field name="ninjas" type="ArrayList&lt;Ninja&gt;" visibility="private"/>
+        <Field name="designarMissao" type="boolean" visibility="private"/>
+        <Field name="dificuldadeMissaoAtribuida" type="String" visibility="private"/>
+        <Field name="idadeNinja" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jMenuBar1" type="javax.swing.JMenuBar" visibility="private"/>
+        <Field name="jPanelLista" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="labelImagemNinja" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="listaNinjas" type="javax.swing.JList&lt;String&gt;" visibility="private"/>
+        <Field name="meritoNinja" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="nomeNinja" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="rankNinja" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="textoIdadeNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textoMeritoNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textoNomeNinja" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textoRankNinja" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ControleNinjas" name="controleNinja"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="isDesignarMissao" returnType="boolean" visibility="public"/>
+        <Method name="setDesignarMissao" returnType="void" visibility="public">
+          <Argument type="boolean" name="designarMissao"/>
+        </Method>
+        <Method name="getDificuldadeMissaoAtribuida" returnType="String" visibility="public"/>
+        <Method name="setDificuldadeMissaoAtribuida" returnType="void" visibility="public">
+          <Argument type="String" name="dificuldadeMissaoAtribuida"/>
+        </Method>
+        <Method name="iniciaLista" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="listaNinjasValueChanged" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.ListSelectionEvent" name="evt"/>
+        </Method>
+        <Method name="getNinjas" returnType="ArrayList&lt;Ninja&gt;" visibility="public"/>
+        <Method name="setNinjas" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Ninja&gt;" name="ninjas"/>
+        </Method>
+        <Method name="clearCampos" returnType="void" visibility="public"/>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="Observable" name="o"/>
+          <Argument type="Object" name="arg"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ConfereInformacao" package="textFileApp" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="isNumeric" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="strnum"/>
+        </Method>
+        <Method name="isRankMissao" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="strRank"/>
+        </Method>
+        <Method name="temConteudo" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CreateTextFile" package="textFileApp" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="output" type="Formatter" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="openFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="nomeArquivo"/>
+        </Method>
+        <Method name="addRecordsNinja" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Ninja" name="ninja"/>
+        </Method>
+        <Method name="addRecordsMissao" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Missao" name="missao"/>
+        </Method>
+        <Method name="cadastraNinja" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Ninja" name="ninja"/>
+        </Method>
+        <Method name="cadastraMissao" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Missao" name="missoes"/>
+        </Method>
+        <Method name="closeFile" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="FileAndDirectoryInfo" package="textFileApp" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="fileInfo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="nomeArquivo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ReadTextFile" package="textFileApp" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="input" type="Scanner" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="openFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="nomeArquivo"/>
+        </Method>
+        <Method name="readRecordsNinjas" returnType="ArrayList&lt;Ninja&gt;" visibility="public" isStatic="true"/>
+        <Method name="readRecordsMissoes" returnType="ArrayList&lt;Missao&gt;" visibility="public" isStatic="true"/>
+        <Method name="closeFile" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="controleNinja" source="gui.JanelaPrincipal" target="dominio.ControleNinjas" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="missoes" source="gui.TelaMissao" target="dominio.Missao" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Missao&gt;"/>
+    <UseRelation source="textFileApp.CreateTextFile" target="dominio.Ninja" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="missoes" source="dominio.ControleMissoes" target="dominio.Missao" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Missao&gt;"/>
+    <HasRelation name="ninjas" source="dominio.ControleNinjas" target="dominio.Ninja" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ninja&gt;"/>
+    <HasRelation name="controleMissoes" source="gui.TelaCadastroMissoes" target="dominio.ControleMissoes" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gui.JanelaPrincipal" target="dominio.Missao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gui.TelaNinja" target="dominio.Ninja" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="textFileApp.CreateTextFile" target="dominio.Missao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controleNinja" source="gui.TelaNinja" target="dominio.ControleNinjas" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="dominio.ControleNinjas" target="dominio.Ninja" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controleMissoes" source="gui.JanelaPrincipal" target="dominio.ControleMissoes" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controleMissoes" source="gui.TelaMissao" target="dominio.ControleMissoes" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="dominio.ControleMissoes" target="dominio.Missao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="textFileApp.ReadTextFile" target="dominio.Missao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="missoes" source="gui.JanelaPrincipal" target="dominio.Missao" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Missao&gt;"/>
+    <UseRelation source="textFileApp.ReadTextFile" target="dominio.Ninja" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ninjas" source="gui.TelaNinja" target="dominio.Ninja" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ninja&gt;"/>
+    <HasRelation name="controleNinja" source="gui.TelaCadastroNinjas" target="dominio.ControleNinjas" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
