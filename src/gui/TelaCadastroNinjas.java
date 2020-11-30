@@ -21,14 +21,12 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
     /**
      * Creates new form TelaCadastroNinjas
      */
-    private String nomeAntes;
     
     private ControleNinjas controleNinja; 
     
     public TelaCadastroNinjas(ControleNinjas controleNinja) {
         initComponents();
         this.controleNinja = controleNinja;
-        this.nomeAntes = "";
     }
     
     /**
@@ -54,7 +52,6 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setClosable(true);
         setTitle("Cadastro Ninjas");
         setNormalBounds(new java.awt.Rectangle(0, 0, 82, 0));
 
@@ -190,27 +187,28 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
     private void cadastrarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNinjaActionPerformed
         
         //Cadastra o novo Ninja
-        controleNinja.adicionaNinja(this.nomeNinja.getText(),this.idadeNinja.getText(),this.rankNinja.getText(),this.meritoNinja.getText());
-        //Mensagem de Inclusao
-        JOptionPane.showMessageDialog(this, "Ninja incluido com sucesso!", "Inclusão", JOptionPane.INFORMATION_MESSAGE);
-        //Limpa os campos
-        limparTela();
+        if(controleNinja.adicionaNinja(this.nomeNinja.getText(),this.idadeNinja.getText(),this.rankNinja.getText(),this.meritoNinja.getText())){
+            JOptionPane.showMessageDialog(this, "Ninja incluido com sucesso!", "Inclusão", JOptionPane.INFORMATION_MESSAGE);
+            limparTela();
+        }else{
+            JOptionPane.showMessageDialog(this, "Dados errados ou faltam dados!", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_cadastrarNinjaActionPerformed
     
-    private void limparTela(){
-        
+    protected void limparTela(){  
         this.nomeNinja.setText("");
         this.rankNinja.setText("");
         this.idadeNinja.setText("");
         this.meritoNinja.setText("");
     }
+    
     private void consultarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarNinjaActionPerformed
        
         String campos[] = null;
         if(!this.nomeNinja.getText().equals("")){
             campos = this.controleNinja.consultarNinja(this.nomeNinja.getText());
-            nomeAntes = this.nomeNinja.getText();
+            String nomeAntes = this.nomeNinja.getText();
         }
         
         if(campos!=null){
@@ -241,22 +239,23 @@ public class TelaCadastroNinjas extends javax.swing.JInternalFrame{
 
     private void editarNinjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNinjaActionPerformed
         
-        String []camposNinja = new String[5];
-        if(!nomeAntes.equals("")){
+        String []camposNinja = new String[4];
+        if(!this.nomeNinja.getText().equals("")){
             
             camposNinja[0] = this.nomeNinja.getText();
             camposNinja[1] = this.idadeNinja.getText();
             camposNinja[2] = this.rankNinja.getText();
             camposNinja[3] = this.meritoNinja.getText();
-            camposNinja[4] = this.nomeAntes;
         
-            if(this.controleNinja.editarNinja(camposNinja) == true){
+            if(this.controleNinja.editarNinja(camposNinja)){
                 JOptionPane.showMessageDialog(this, "Ninja Editado com Sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 limparTela();
+            }else{
+                JOptionPane.showMessageDialog(this, "Dados incoerentes para a edição!", "Aviso", JOptionPane.ERROR_MESSAGE);
+
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Consulte o NinjaPrimeiro para depois Editar!!!", "Informação", JOptionPane.INFORMATION_MESSAGE); 
-            limparTela();
+            JOptionPane.showMessageDialog(this, "Digite o nome do ninja!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarNinjaActionPerformed
 

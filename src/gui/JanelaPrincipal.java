@@ -1,5 +1,6 @@
 package gui;
 
+import dominio.ControleMissoes;
 import dominio.ControleNinjas;
 import dominio.ControleNinjas;
 import dominio.Missao;
@@ -17,26 +18,28 @@ import textFileApp.ReadTextFile;
  *
  * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
+public class JanelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form JanelaPrincipal
      */
     
-    public JanelaPrincipal(ControleNinjas controleNinja) {
+    public JanelaPrincipal(ControleNinjas controleNinja, ControleMissoes controleMissoes) {
         this.controleNinja = controleNinja;
+        this.controleMissoes = controleMissoes;
         initListaNinjas();
         initListaMissoes();
         initComponents();
         initInternalFrames();
         setIconImage();
+        controleMissoes.addObserver((Observer) telaMissao);
         controleNinja.addObserver((Observer) telaNinja);
+        
     }
     
     public void initListaMissoes(){
-        ReadTextFile.openFile("listaMissoes.txt");
-        missoes = ReadTextFile.readRecordsMissoes();
-        ReadTextFile.closeFile();
+        
+        controleMissoes.lerDadosMissao();
     }
     
     public void initListaNinjas(){
@@ -47,9 +50,9 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     
     public void initInternalFrames(){
         telaNinja = new TelaNinja(this.controleNinja);
-        telaMissao = new TelaMissao(this.missoes);
+        telaMissao = new TelaMissao(this.controleMissoes, this.telaNinja);
         telaCadastroNinjas = new TelaCadastroNinjas(this.controleNinja);
-        telaCadastroMissoes = new TelaCadastroMissoes();
+        telaCadastroMissoes = new TelaCadastroMissoes(this.controleMissoes);
         painelPrincipal.add(telaNinja);
         painelPrincipal.add(telaMissao);
         painelPrincipal.add(telaCadastroNinjas);
@@ -202,7 +205,9 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     
     private void fechaInternalFrames(){
         telaNinja.dispose();
+        ((TelaMissao) telaMissao).clearCampos();
         telaMissao.dispose();
+        ((TelaNinja) telaNinja).clearCampos();
         telaCadastroNinjas.dispose();
         telaCadastroMissoes.dispose();
     }
@@ -218,12 +223,8 @@ public class JanelaPrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JInternalFrame telaCadastroNinjas;
     private javax.swing.JInternalFrame telaCadastroMissoes;
     private ControleNinjas controleNinja;
-    
-    @Override
-    public void update(Observable o, Object arg) {
-        ControleNinjas controleAuxNinjas = (ControleNinjas)o;
-        this.controleNinja = controleAuxNinjas;
-    }
+    private ControleMissoes controleMissoes;
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastroMissoes;

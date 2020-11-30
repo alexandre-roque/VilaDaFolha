@@ -5,8 +5,11 @@
  */
 package dominio;
 
+import java.util.Observable;
+import java.util.Observer;
 import dominio.Missao;
 import java.util.ArrayList;
+import textFileApp.ConfereInformacao;
 import textFileApp.CreateTextFile;
 import textFileApp.ReadTextFile;
 
@@ -14,24 +17,28 @@ import textFileApp.ReadTextFile;
  *
  * @authors Alexandre Roque, Henrique Coelho, Nasser Rafael, Ronaldo Zica e Vitor Santana.
  */
-public class ControleMissoes {
+public class ControleMissoes extends Observable{
     
     
     private ArrayList<Missao> missoes;
     
     
     public ControleMissoes(){
-        
         this.missoes = new ArrayList<>();
         lerDadosMissao();
     }
     
-    public void  adicionaMissao(String nome,String descricao,String rank){
+    public boolean  adicionaMissao(String nome,String descricao,String rank){
         
-        Missao missaoAdicionada = new Missao(nome,descricao,rank);
-        this.missoes.add(missaoAdicionada);
-        
-        cadastrarDadosNinja();
+        if(ConfereInformacao.temConteudo(nome) && ConfereInformacao.temConteudo(descricao) && ConfereInformacao.isRankMissao(rank)){
+            Missao missaoAdicionada = new Missao(nome,descricao,rank);
+            this.missoes.add(missaoAdicionada);
+ 
+            cadastrarDadosMissoes();
+            
+            return true;
+        }else
+            return false;
         
     }
     
@@ -42,17 +49,18 @@ public class ControleMissoes {
         ReadTextFile.closeFile();
     }
     
-    public void cadastrarDadosNinja(){
+    public void cadastrarDadosMissoes(){
          
-        CreateTextFile.openFile("listaNinjas.txt");
+        CreateTextFile.openFile("listaMissoes.txt");
         for(Missao missoes : this.missoes){
             
             CreateTextFile.cadastraMissao(missoes);
         }
-        CreateTextFile.closeFile();  
+        CreateTextFile.closeFile();
+        mudaEstado();
     }
     
-    public String[] consultarNinja(String nomeMissao){
+    public String[] consultarMissao(String nomeMissao){
         
         String [] campos = new String [3];
         for(Missao missoes : this.missoes){
@@ -77,12 +85,10 @@ public class ControleMissoes {
     
     public boolean removerMissao(String nomeMissao){
         
-        for(Missao missoes : this.missoes){
-            
-            if(nomeMissao.equals(missoes.getNome())){
-                
-                this.missoes.remove(missoes);
-                cadastrarDadosNinja();
+        for(Missao missao : this.missoes){  
+            if(nomeMissao.equals(missao.getNome())){ 
+                this.missoes.remove(missao);
+                cadastrarDadosMissoes();
                 return true;
             }
         }
@@ -91,17 +97,15 @@ public class ControleMissoes {
     }
     
     public boolean editarMissao(String[] campos){
-        
-        for(Missao missoes : this.missoes){
-            
-            if(campos[3].equals(missoes.getNome())){
-            	missoes.setNome(campos[0]);
-            	missoes.setDescricao(campos[1]);
-            	missoes.setRank(campos[2]);
-                cadastrarDadosNinja();
-                return true;
+        if(ConfereInformacao.temConteudo(campos[1]) && ConfereInformacao.isRankMissao(campos[2])){
+            for(Missao missao : this.missoes){   
+                if(campos[0].equals(missao.getNome())){
+                    missao.setDescricao(campos[1]);
+                    missao.setRank(campos[2]);
+                    cadastrarDadosMissoes();
+                    return true;
+                } 
             }
-            
         }
         
         return false;
@@ -109,6 +113,12 @@ public class ControleMissoes {
 
     public ArrayList<Missao> getMissoes() {
         return missoes;
+    }
+    
+    public void mudaEstado(){
+        setChanged();
+        notifyObservers(this.getMissoes());
+        //System.out.println(this.countObservers());
     }
     
 }
